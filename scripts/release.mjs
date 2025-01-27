@@ -322,7 +322,7 @@ function updateDeps(pkg, depType, updatedPackages) {
   const deps = pkg[depType]
   if (!deps) return
   step(`Updating ${chalk.bold(depType)} for ${chalk.bold.white(pkg.name)}...`)
-  Object.keys(deps).forEach((dep) => {
+  Object.keys(deps)?.forEach((dep) => {
     const updatedDep = updatedPackages.find((pkg) => pkg.name === dep)
     // avoid updated peer deps that are external like @vue/devtools-api
     if (dep && updatedDep) {

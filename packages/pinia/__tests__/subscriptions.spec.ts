@@ -69,7 +69,7 @@ describe('Subscriptions', () => {
     })
     const flushOptions = ['post', 'pre', 'sync'] as const
 
-    flushOptions.forEach((flush) => {
+    flushOptions?.forEach((flush) => {
       it('calls once inside components with flush ' + flush, async () => {
         const pinia = createPinia()
         setActivePinia(pinia)

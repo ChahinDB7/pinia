@@ -83,10 +83,10 @@ function mergeReactiveObjects<
 >(target: T, patchToApply: _DeepPartial<T>): T {
   // Handle Map instances
   if (target instanceof Map && patchToApply instanceof Map) {
-    patchToApply.forEach((value, key) => target.set(key, value))
+    patchToApply?.forEach((value, key) => target.set(key, value))
   } else if (target instanceof Set && patchToApply instanceof Set) {
     // Handle Set instances
-    patchToApply.forEach(target.add, target)
+    patchToApply?.forEach(target.add, target)
   }
 
   // no need to go through symbols because they cannot be serialized anyway
@@ -592,7 +592,7 @@ function createSetupStore<
   // add the state, getters, and action properties
   /* istanbul ignore if */
   if (isVue2) {
-    Object.keys(setupStore).forEach((key) => {
+    Object.keys(setupStore)?.forEach((key) => {
       set(store, key, setupStore[key])
     })
   } else {
@@ -624,7 +624,7 @@ function createSetupStore<
   if (__DEV__) {
     store._hotUpdate = markRaw((newStore) => {
       store._hotUpdating = true
-      newStore._hmrPayload.state.forEach((stateKey) => {
+      newStore._hmrPayload.state?.forEach((stateKey) => {
         if (stateKey in store.$state) {
           const newStateTarget = newStore.$state[stateKey]
           const oldStateSource = store.$state[stateKey as keyof UnwrapRef<S>]
@@ -645,7 +645,7 @@ function createSetupStore<
       })
 
       // remove deleted state properties
-      Object.keys(store.$state).forEach((stateKey) => {
+      Object.keys(store.$state)?.forEach((stateKey) => {
         if (!(stateKey in newStore.$state)) {
           del(store, stateKey)
         }
@@ -681,14 +681,14 @@ function createSetupStore<
       }
 
       // remove deleted getters
-      Object.keys(store._hmrPayload.getters).forEach((key) => {
+      Object.keys(store._hmrPayload.getters)?.forEach((key) => {
         if (!(key in newStore._hmrPayload.getters)) {
           del(store, key)
         }
       })
 
       // remove old actions
-      Object.keys(store._hmrPayload.actions).forEach((key) => {
+      Object.keys(store._hmrPayload.actions)?.forEach((key) => {
         if (!(key in newStore._hmrPayload.actions)) {
           del(store, key)
         }
@@ -710,7 +710,7 @@ function createSetupStore<
     }
 
     // avoid listing internal properties in devtools
-    ;(['_p', '_hmrPayload', '_getters', '_customProperties'] as const).forEach(
+    ;(['_p', '_hmrPayload', '_getters', '_customProperties'] as const)?.forEach(
       (p) => {
         Object.defineProperty(
           store,
@@ -728,7 +728,7 @@ function createSetupStore<
   }
 
   // apply all plugins
-  pinia._p.forEach((extender) => {
+  pinia._p?.forEach((extender) => {
     /* istanbul ignore else */
     if (__USE_DEVTOOLS__ && IS_CLIENT) {
       const extensions = scope.run(() =>
@@ -739,7 +739,7 @@ function createSetupStore<
           options: optionsForPlugin,
         })
       )!
-      Object.keys(extensions || {}).forEach((key) =>
+      Object.keys(extensions || {})?.forEach((key) =>
         store._customProperties.add(key)
       )
       assign(store, extensions)

@@ -1,6 +1,6 @@
 {
   "name": "@chahindb7/pinia",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Intuitive, type safe and flexible Store for Vue",
   "main": "index.js",
   "module": "dist/pinia.mjs",
@@ -73,6 +73,7 @@
     "@vue/test-utils": "^2.4.6"
   },
   "dependencies": {
+    "@chahindb7/pinia": "^1.0.7",
     "@vue/devtools-api": "^6.6.3",
     "vue-demi": "^0.14.10"
   },

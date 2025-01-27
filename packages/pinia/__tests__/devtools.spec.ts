@@ -21,7 +21,7 @@ describe('devtoolsPlugin', () => {
 
     // Simulate mocking with @pinia/testing createSpy
     pinia.use(({ store, options }) => {
-      Object.keys(options.actions).forEach((action) => {
+      Object.keys(options.actions)?.forEach((action) => {
         store[action]._mockImplementation = () => {}
       })
     })

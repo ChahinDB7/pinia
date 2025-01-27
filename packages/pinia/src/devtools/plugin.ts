@@ -150,7 +150,7 @@ export function registerPiniaDevtools(app: DevtoolsApp, pinia: Pinia) {
             payload.componentInstance.proxy as ComponentPublicInstance
           )._pStores!
 
-          Object.values(piniaStores).forEach((store) => {
+          Object.values(piniaStores)?.forEach((store) => {
             payload.instanceData.state.push({
               type: getStoreType(store.$id),
               key: 'state',
@@ -390,39 +390,32 @@ function addStoreToDevtools(app: DevtoolsApp, store: StoreGeneric) {
         })
       }, true)
 
-      try {
-        if (Array.isArray(store._customProperties)) {
-          store._customProperties?.forEach((name) => {
-            watch(
-              () => unref<unknown>(store[name]),
-              (newValue, oldValue) => {
-                api.notifyComponentUpdate()
-                api.sendInspectorState(INSPECTOR_ID)
-                if (isTimelineActive) {
-                  api.addTimelineEvent({
-                    layerId: MUTATIONS_LAYER_ID,
-                    event: {
-                      time: now(),
-                      title: 'Change',
-                      subtitle: name,
-                      data: {
-                        newValue,
-                        oldValue,
-                      },
-                      groupId: activeAction,
-                    },
-                  })
-                }
-              },
-              { deep: true }
-            )
-          })
-        } else {
-          console.warn('store._customProperties is undefined or not an array.')
-        }
-      } catch (ex) {
-        console.warn('Error while watching store._customProperties', ex)
-      }
+      store._customProperties?.forEach((name) => {
+        watch(
+          () => unref<unknown>(store[name]),
+          (newValue, oldValue) => {
+            console.log(123)
+            api.notifyComponentUpdate()
+            api.sendInspectorState(INSPECTOR_ID)
+            if (isTimelineActive) {
+              api.addTimelineEvent({
+                layerId: MUTATIONS_LAYER_ID,
+                event: {
+                  time: now(),
+                  title: 'Change',
+                  subtitle: name,
+                  data: {
+                    newValue,
+                    oldValue,
+                  },
+                  groupId: activeAction,
+                },
+              })
+            }
+          },
+          { deep: true }
+        )
+      })
 
       store.$subscribe(
         ({ events, type }, state) => {

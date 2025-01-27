@@ -30,7 +30,7 @@ function getAuthors(pkg) {
 
   const authors = new Set()
   if (contributors && contributors)
-    contributors.forEach((contributor) => {
+    contributors?.forEach((contributor) => {
       authors.add(contributor.name)
     })
   if (author) authors.add(author.name)
@@ -74,7 +74,7 @@ const packageConfigs = packageBuilds.map((format) =>
 )
 
 // only add the production ready if we are bundling the options
-packageBuilds.forEach((buildName) => {
+packageBuilds?.forEach((buildName) => {
   if (buildName === 'cjs') {
     packageConfigs.push(createProductionConfig(buildName))
   } else if (buildName === 'global') {
@@ -205,7 +205,7 @@ function createReplacePlugin(
   }
   // allow inline overrides like
   //__RUNTIME_COMPILE__=true yarn build
-  Object.keys(replacements).forEach((key) => {
+  Object.keys(replacements)?.forEach((key) => {
     if (key in process.env) {
       replacements[key] = process.env[key]
     }

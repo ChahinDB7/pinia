@@ -66,7 +66,7 @@ export function mockWarn() {
     toHaveBeenWarnedTimes(received: string | RegExp, n: number) {
       asserted.set(received.toString(), received)
       let found = 0
-      warn.mock.calls.forEach((args) => {
+      warn.mock.calls?.forEach((args) => {
         const isFound =
           typeof received === 'string'
             ? args[0].includes(received)
@@ -111,7 +111,7 @@ export function mockWarn() {
       })
     warn.mockRestore()
     if (nonAssertedWarnings.length) {
-      nonAssertedWarnings.forEach((warning) => {
+      nonAssertedWarnings?.forEach((warning) => {
         console.warn(warning)
       })
       throw new Error(`test case threw unexpected warnings.`)

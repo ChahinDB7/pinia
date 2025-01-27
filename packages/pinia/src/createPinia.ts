@@ -32,7 +32,7 @@ export function createPinia(): Pinia {
         if (__USE_DEVTOOLS__ && IS_CLIENT) {
           registerPiniaDevtools(app, pinia)
         }
-        toBeInstalled.forEach((plugin) => _p.push(plugin))
+        toBeInstalled?.forEach((plugin) => _p.push(plugin))
         toBeInstalled = []
       }
     },
