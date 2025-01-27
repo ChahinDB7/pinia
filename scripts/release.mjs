@@ -47,7 +47,7 @@ Flags:
 // const preId =
 //   args.preid ||
 //   (semver.prerelease(currentVersion) && semver.prerelease(currentVersion)[0])
-const EXPECTED_BRANCH = 'v2'
+const EXPECTED_BRANCH = 'master'
 
 const bin = (name) => resolve(__dirname, '../node_modules/.bin/' + name)
 /**
