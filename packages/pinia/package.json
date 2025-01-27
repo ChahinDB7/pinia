@@ -1,6 +1,6 @@
 {
   "name": "@chahindb7/pinia",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Intuitive, type safe and flexible Store for Vue",
   "main": "index.js",
   "module": "dist/pinia.mjs",
@@ -95,6 +95,9 @@
   },
   "bugs": {
     "url": "https://github.com/ChahinDB7/pinia/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "homepage": "https://github.com/ChahinDB7/pinia#readme"
 }

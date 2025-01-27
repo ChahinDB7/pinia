@@ -100,7 +100,7 @@ export interface Pinia {
 }
 
 export const piniaSymbol = (
-  __DEV__ ? Symbol('pinia') : /* istanbul ignore next */ Symbol()
+  __DEV__ ? Symbol('@chahindb7/pinia') : /* istanbul ignore next */ Symbol()
 ) as InjectionKey<Pinia>
 
 /**

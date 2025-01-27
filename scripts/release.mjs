@@ -187,7 +187,9 @@ async function main() {
 
   // TODO: we need to reorder packages based on dependencies
   // pinia needs to be first
-  const piniaPkgIndx = packagesToRelease.find(({ name }) => name === 'pinia')
+  const piniaPkgIndx = packagesToRelease.find(
+    ({ name }) => name === '@chahindb7/pinia'
+  )
   if (piniaPkgIndx > 0) {
     packagesToRelease.unshift(packagesToRelease.splice(piniaPkgIndx, 1)[0])
   }

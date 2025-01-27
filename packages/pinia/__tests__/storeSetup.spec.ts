@@ -137,7 +137,7 @@ describe('store with setup syntax', () => {
   it('can use app level injections', async () => {
     const pinia = createPinia()
     const app = createApp({}).use(pinia)
-    app.provide('hello', 'pinia')
+    app.provide('hello', '@chahindb7/pinia')
     const useStore = defineStore('id', () => {
       const injected = ref(inject('hello', 'nope'))
 
@@ -145,7 +145,7 @@ describe('store with setup syntax', () => {
     })
 
     const store = useStore()
-    expect(store.injected).toBe('pinia')
+    expect(store.injected).toBe('@chahindb7/pinia')
   })
 
   // TODO: until https://github.com/vuejs/test-utils/issues/2059 is fixed
@@ -176,10 +176,10 @@ describe('store with setup syntax', () => {
       global: {
         plugins: [pinia],
         provide: {
-          hello: 'pinia',
+          hello: '@chahindb7/pinia',
         },
       },
     })
-    expect(wrapper.text()).toBe('pinia')
+    expect(wrapper.text()).toBe('@chahindb7/pinia')
   })
 })

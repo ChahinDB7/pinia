@@ -1,7 +1,7 @@
 {
-  "name": "@pinia/root",
+  "name": "@chahindb7/pinia-root",
+  "version": "1.0.0",
   "packageManager": "pnpm@9.4.0",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -71,7 +71,7 @@
       "prettier --write"
     ],
     "*.ts?(x)": [
-      "prettier --parser=typescript --write"
+      "prettier --write"
     ]
   },
   "resolutions": {

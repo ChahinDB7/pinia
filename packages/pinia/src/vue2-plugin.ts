@@ -11,7 +11,7 @@ import { Pinia, piniaSymbol, setActivePinia } from './rootStore'
  * @example
  * ```js
  * import Vue from 'vue'
- * import { PiniaVuePlugin, createPinia } from 'pinia'
+ * import { PiniaVuePlugin, createPinia } from '@chahindb7/pinia'
  *
  * Vue.use(PiniaVuePlugin)
  * const pinia = createPinia()

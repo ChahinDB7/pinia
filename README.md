@@ -126,7 +126,7 @@ Create a pinia (the root store) and pass it to app:
 ```js
 // Vue 3
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createPinia } from '@chahindb7/pinia'
 import App from './App.vue'
 
 const pinia = createPinia()
@@ -138,7 +138,7 @@ app.mount('#app')
 
 ```js
 // Vue 2
-import { createPinia, PiniaVuePlugin } from 'pinia'
+import { createPinia, PiniaVuePlugin } from '@chahindb7/pinia'
 
 Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
@@ -160,7 +160,7 @@ For more detailed instructions, including [Nuxt configuration](https://pinia.vue
 You can create as many stores as you want, and they should each exist in different files:
 
 ```ts
-import { defineStore } from 'pinia'
+import { defineStore } from '@chahindb7/pinia'
 
 // main is the name of the store. It is unique across your application
 // and will appear in devtools
@@ -193,7 +193,7 @@ export const useMainStore = defineStore('main', {
 
 ```ts
 import { useMainStore } from '@/stores/main'
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from '@chahindb7/pinia'
 
 export default defineComponent({
   setup() {

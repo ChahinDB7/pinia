@@ -34,8 +34,8 @@ export interface ModuleOptions {
 
 const module: NuxtModule<ModuleOptions> = defineNuxtModule<ModuleOptions>({
   meta: {
-    name: 'pinia',
-    configKey: 'pinia',
+    name: '@chahindb7/pinia',
+    configKey: '@chahindb7/pinia',
     compatibility: {
       nuxt: '^2.0.0 || >=3.0.0-rc.5',
       bridge: true,

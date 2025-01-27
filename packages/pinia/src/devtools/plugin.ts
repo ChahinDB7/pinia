@@ -34,7 +34,7 @@ let isTimelineActive = true
 const componentStateTypes: string[] = []
 
 const MUTATIONS_LAYER_ID = 'pinia:mutations'
-const INSPECTOR_ID = 'pinia'
+const INSPECTOR_ID = '@chahindb7/pinia'
 const { assign } = Object
 
 /**
@@ -58,7 +58,7 @@ export function registerPiniaDevtools(app: DevtoolsApp, pinia: Pinia) {
       id: 'dev.esm.pinia',
       label: 'Pinia 🍍',
       logo: 'https://pinia.vuejs.org/logo.svg',
-      packageName: 'pinia',
+      packageName: '@chahindb7/pinia',
       homepage: 'https://pinia.vuejs.org',
       componentStateTypes,
       app,
@@ -311,7 +311,7 @@ function addStoreToDevtools(app: DevtoolsApp, store: StoreGeneric) {
       id: 'dev.esm.pinia',
       label: 'Pinia 🍍',
       logo: 'https://pinia.vuejs.org/logo.svg',
-      packageName: 'pinia',
+      packageName: '@chahindb7/pinia',
       homepage: 'https://pinia.vuejs.org',
       componentStateTypes,
       app,
@@ -390,31 +390,39 @@ function addStoreToDevtools(app: DevtoolsApp, store: StoreGeneric) {
         })
       }, true)
 
-      store._customProperties?.forEach((name) => {
-        watch(
-          () => unref<unknown>(store[name]),
-          (newValue, oldValue) => {
-            api.notifyComponentUpdate()
-            api.sendInspectorState(INSPECTOR_ID)
-            if (isTimelineActive) {
-              api.addTimelineEvent({
-                layerId: MUTATIONS_LAYER_ID,
-                event: {
-                  time: now(),
-                  title: 'Change',
-                  subtitle: name,
-                  data: {
-                    newValue,
-                    oldValue,
-                  },
-                  groupId: activeAction,
-                },
-              })
-            }
-          },
-          { deep: true }
-        )
-      })
+      try {
+        if (Array.isArray(store._customProperties)) {
+          store._customProperties?.forEach((name) => {
+            watch(
+              () => unref<unknown>(store[name]),
+              (newValue, oldValue) => {
+                api.notifyComponentUpdate()
+                api.sendInspectorState(INSPECTOR_ID)
+                if (isTimelineActive) {
+                  api.addTimelineEvent({
+                    layerId: MUTATIONS_LAYER_ID,
+                    event: {
+                      time: now(),
+                      title: 'Change',
+                      subtitle: name,
+                      data: {
+                        newValue,
+                        oldValue,
+                      },
+                      groupId: activeAction,
+                    },
+                  })
+                }
+              },
+              { deep: true }
+            )
+          })
+        } else {
+          console.warn('store._customProperties is undefined or not an array.')
+        }
+      } catch (ex) {
+        console.warn('Error while watching store._customProperties', ex)
+      }
 
       store.$subscribe(
         ({ events, type }, state) => {

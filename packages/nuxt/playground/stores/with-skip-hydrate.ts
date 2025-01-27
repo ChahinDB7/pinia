@@ -1,4 +1,4 @@
-import { skipHydrate } from 'pinia'
+import { skipHydrate } from '@chahindb7/pinia'
 
 export const useWithSkipHydrateStore = defineStore('with-skip-hydrate', () => {
   const skipped = skipHydrate(

@@ -1,5 +1,5 @@
 import _Vue2 from 'vue'
-import { createPinia, setActivePinia, PiniaVuePlugin } from 'pinia'
+import { createPinia, setActivePinia, PiniaVuePlugin } from '@chahindb7/pinia'
 
 // TODO: workaround that should probably be removed in the future
 const Vue = 'default' in _Vue2 ? (_Vue2 as any).default : _Vue2
@@ -25,10 +25,10 @@ export default (context: any, provide: any) => {
   }
 
   // Inject $pinia
-  provide('pinia', pinia)
+  provide('@chahindb7/pinia', pinia)
 }
 
-declare module 'pinia' {
+declare module '@chahindb7/pinia' {
   export interface PiniaCustomProperties {
     /**
      * Nuxt context. Requires you to install `@nuxt/types` to have types.

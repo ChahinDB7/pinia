@@ -4,7 +4,7 @@ import {
   definePayloadReviver,
 } from '#imports'
 import {} from 'nuxt/app'
-import { shouldHydrate } from 'pinia'
+import { shouldHydrate } from '@chahindb7/pinia'
 
 /**
  * Removes properties marked with `skipHydrate()` to avoid sending unused data to the client.
